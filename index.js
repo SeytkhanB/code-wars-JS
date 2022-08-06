@@ -1,5 +1,4 @@
 
-
 // N1
 // *****************************************
 // FUNCTION SHOULD RETURN AN OPPOSITE OF
@@ -605,7 +604,7 @@
 // Your task is to convert strings to how they 
 // would be written by Jaden Smith. The strings 
 // are actual quotes from Jaden Smith, but they are 
-// not capitalized in the same way he originally typed them.
+// not d in the same way he originally typed them.
 
 // Example:
 // Not Jaden-Cased: "How can mirrors be real if our eyes aren't real"
@@ -2251,3 +2250,626 @@
 
 // ONE THING: YOU MUST READ THE TASK WITH GREAT ATTENTION
 // HERE IS MY NEW OVERALL RACK IS 5 KYU. RESPECT
+
+
+// N83
+// *****************************************
+// A string is considered to be in title case if each word in the string is 
+// either (a) capitalised (that is, only the first letter of the word is in upper case) 
+// or (b) considered to be an exception and put entirely into lower case unless it 
+// is the first word, which is always capitalised.
+
+// Write a function that will convert a string into title case, given an optional list 
+// of exceptions (minor words). The list of minor words will be given as a string with 
+// each word separated by a space. Your function should ignore the case of the minor words 
+// string -- it should behave in the same way even if the case of the minor word string is changed
+
+// SOLUTION 
+// function titleCase(title, minorWords) {
+//   var minorWords = typeof minorWords !== "undefined" ? minorWords.toLowerCase().split(' ') : [];
+//   return title.toLowerCase().split(' ').map(function(v, i) {
+//     if(v != "" && ( (minorWords.indexOf(v) === -1) || i == 0)) {
+//       v = v.split('');
+//       v[0] = v[0].toUpperCase();
+//       v = v.join('');
+//     }
+//     return v;
+//   }).join(' ');
+// }
+// console.log(titleCase('THE WIND IN THE WILLOWS', 'The In'));   // should return: 'A Clash of Kings'
+
+
+// N84
+// *****************************************
+// Complete the function that takes two integers (a, b, where a < b) and return an array of all integers between 
+// the input parameters, including them.
+// For example:
+// a = 1
+// b = 4
+// --> [1, 2, 3, 4]
+
+// SOLUTION
+// function between(a, b) {
+//   let arr = [];
+//   for (let i = a; i <= b; i++) {
+//     arr.push(i);
+//   }
+//   return arr;
+// }
+// between(-2, 21);  // [-2, -1, 0, 1, 2, ... 21];
+
+
+// N85
+// *****************************************
+// You are given an array with positive numbers and a non-negative number N. You should find the 
+// N-th power of the element in the array with the index N. If N is outside of the array, then 
+// return -1. Don't forget that the first element has the index 0.
+
+// Let's look at a few examples:
+// array = [1, 2, 3, 4] and N = 2, then the result is 3^2 == 9;
+// array = [1, 2, 3] and N = 3, but N is outside of the array, so the result is -1
+
+// SOLUTION
+// function index(array, n) {
+//   if (array.length <= n || 0 > n) {
+//     return -1;
+//   } else {
+//     return Math.pow(array[n], n);
+//   }
+// }
+
+// Better Way
+// const index = (array, n) => array.length <= n || 0 > n ? -1 : Math.pow(array[n], n);
+
+// Best Way
+// const index = (array, n) => array[n] ** n || -1;
+
+// index([75,68,35,61,9,36,89,0,30], 10);  // -1
+
+
+// N86
+// *****************************************
+// In this simple exercise, you will create a program that will take two lists of integers, 
+// a and b. Each list will consist of 3 positive integers above 0, representing the 
+// dimensions of cuboids a and b. You must find the difference of the cuboids' volumes 
+// regardless of which is bigger.
+
+// For example, if the parameters passed are ([2, 2, 3], [5, 4, 1]), the 
+// volume of a is 12 and the volume of b is 20. Therefore, the function should return 8.
+// Your function will be tested with pre-made examples as well as random ones.
+// If you can, try writing it in one line of code
+
+// SOLUTION
+// function findDifference(a, b) {
+//   const sum = (acc, num) => acc * num;
+//   var a = a.reduce(sum, 1);
+//   var b = b.reduce(sum, 1);
+//   if (a > b) {
+//     return a - b;
+//   } else {
+//     return b - a;
+//   }
+// }
+
+// const findDifference = (a, b) => Math.abs(a[0] * a[1] * a[2] - b[0] * b[1] * b[2]);
+// findDifference([9, 7, 2], [5, 2, 2]);   // 106
+
+
+// N87
+// *****************************************
+// Task
+// In this simple Kata your task is to create a function that turns a string into 
+// a Mexican Wave. You will be passed a string and you must return that string in 
+// an array where an uppercase letter is a person standing up. 
+// Rules
+//  1.  The input string will always be lower case but maybe empty.
+
+//  2.  If the character in the string is whitespace then pass over it as if it was an empty seat
+// Example
+// wave("hello") => ["Hello", "hEllo", "heLlo", "helLo", "hellO"]
+
+// SOLUTION
+// function wave(str) {
+//   let result = [];
+
+//   for (let i = 0; i < str.length; i++) {
+//       if (str[i] === ' ') continue;
+//       result.push(Array.from(str, (c, j) => i === j ? c.toUpperCase() : c).join(''));
+//   }
+//   return result;
+// }
+// wave('hello');  // ["Hello", "hEllo", "heLlo" "helLo", "hellO"]
+
+
+// N88
+// *****************************************
+// The maximum sum subarray problem consists in finding the maximum sum of a 
+// contiguous subsequence in an array or list of integers:
+
+// maxSequence([-2, 1, -3, 4, -1, 2, 1, -5, 4])
+// // should be 6: [4, -1, 2, 1]
+// Easy case is when the list is made up of only positive numbers and the 
+// maximum sum is the sum of the whole array. If the list is made 
+// up of only negative numbers, return 0 instead.
+// Empty list is considered to have zero greatest sum. Note that the empty list 
+// or array is also a valid sublist/subarray
+
+// SOLUTION
+// const maxSequence = function(arr) {
+//   if (arr.length === 0) {
+//     return 0;
+//   }
+//   let currentMax = 0, currentSum;
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i] > currentMax) {
+//       currentMax = arr[i]
+//     }
+//     for (let j = i + 1; j < arr.length; j++) {
+//       if (j === i + 1) {
+//         currentSum = arr[i]
+//       }
+//       currentSum += arr[j];
+//       if (currentSum > currentMax) {
+//         currentMax = currentSum;
+//       }
+//     }
+//   }
+//   return currentMax;
+// }
+// maxSequence([-2, 1, -3, 4, -1, 2, 1, -5, 4]);   // 6
+
+
+// N89
+// *****************************************
+// Task
+// Write a function dirReduc which will take an array of strings 
+// and returns an array of strings with the needless directions 
+// removed (W<->E or S<->N side by side).
+
+// SOLUTION
+// function dirReduc(arr) {
+//   let str = arr.join('');
+//   let pattern = /NORTHSOUTH|EASTWEST|SOUTHNORTH|WESTEAST/g
+//   while(pattern.test(str)) {
+//     str = str.replace(pattern, '')
+//   }
+//   return str.match(/(NORTH|SOUTH|EAST|WEST)/g) || [];
+// }
+// dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"]);   // ["WEST"]
+// dirReduc(["NORTH", "WEST", "SOUTH", "EAST"]);   // ["NORTH", "WEST", "SOUTH", "EAST"]
+
+
+// N89
+// *****************************************
+// This time no story, no theory. The examples below show you how to write function accum:
+
+// Examples:
+// accum("abcd") -> "A-Bb-Ccc-Dddd"
+// accum("RqaEzty") -> "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
+// accum("cwAt") -> "C-Ww-Aaa-Tttt"
+// The parameter of accum is a string which includes only letters from a..z and A..Z
+
+// SOLUTION
+// function accum(s) {
+//   const res = [];
+//   const lowerStr = s.toLowerCase();
+
+//   for (let i = 0; i < lowerStr.length; i++) {
+//     let str = lowerStr[i].toUpperCase();
+//     for ( let j = 0; j < i; j++) {
+//       str += lowerStr[i]
+//     }
+//     res.push(str);
+//   }
+//   return res.join('-');
+// }
+// console.log(accum('Hyppermetical'));
+
+// Better Way
+// function accum(s) {
+//   return [...s].map((char, index) => (char.toUpperCase() + char.toLowerCase().repeat(index))).join('-');
+// }
+// console.log(accum('Hyppermetical'));
+
+
+// N90
+// *****************************************
+// I have a cat and a dog.
+// I got them at the same time as kitten/puppy. That was humanYears years ago.
+// Return their respective ages now as [humanYears,catYears,dogYears]
+
+// NOTES:
+// humanYears >= 1
+// humanYears are whole numbers only
+// Cat Years
+// 15 cat years for first year
+// +9 cat years for second year
+// +4 cat years for each year after that
+// Dog Years
+// 15 dog years for first year
+// +9 dog years for second year
+// +5 dog years for each year after that
+
+// SOLUTION
+// const hYcYdY = function(humanY) {
+//   if (humanY === 1) {return [1, 15, 15]}
+//   if (humanY === 2) {return [2, 24, 24]}
+
+//   return [humanY, 24+((humanY-2) * 4), 24+((humanY-2) * 5)];
+// }
+// hYcYdY(10);   // [10, 56, 64]
+
+
+// N91
+// *****************************************
+// Complete the solution so that it returns true if the first argument(string) passed in 
+// ends with the 2nd argument (also a string).
+
+// Examples:
+// solution('abc', 'bc') // returns true
+// solution('abc', 'd') // returns false
+
+// SOLUTION
+// function solution(str, ending) {
+//   if (!ending.length) {
+//     return true;
+//   } else if (str.substr(-ending.length) === ending) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
+
+// Best Way
+// const solution = (str, ending) => str.endsWith(ending);
+// console.log(solution('abcde', 'de'));
+
+
+// N92
+// *****************************************
+// In this little assignment you are given a string of space separated 
+// numbers, and have to return the highest and lowest number.
+
+// Examples
+// highAndLow("1 2 3 4 5");  // return "5 1"
+// highAndLow("1 2 -3 4 5"); // return "5 -3"
+// highAndLow("1 9 3 4 -5"); // return "9 -5"
+
+// SOLUTION
+// function highAndLow(n) {
+//   let x = Array.from(n.split(' '), Number);
+//   let maxN = Math.max(...x);
+//   let minN = Math.min(...x);
+//   return `${maxN} ${minN}`
+// }
+// highAndLow('1 2 3 4 -1 5');    // '5 -1'
+
+// Better Way
+// function highAndLow(numbers){
+//   numbers = numbers.split(' ');
+//   return `${Math.max(...numbers)} ${Math.min(...numbers)}`;
+// }
+// highAndLow('1 2 3 4 -1 5');
+
+
+// N93
+// *****************************************
+// Create a function that returns the sum of the two lowest positive numbers given 
+// an array of minimum 4 positive integers. No floats or non-positive integers will be passed.
+
+// For example, when an array is passed like [19, 5, 42, 2, 77], the output should be 7.
+// [10, 343445353, 3453445, 3453545353453] should return 3453455
+
+// SOLUTION
+// function sum(n) {
+//   let arr = n.sort((a, b) => a - b).slice(0, 2);
+//   return arr.reduce((a, c) => a + c);
+// }
+// sum([19, 42, 2, 69, 88]);   // 10
+
+// Better Way
+// const sum = n => n.sort((a, b) => a - b).slice(0, 2).reduce((a, c) => a + c);
+// sum([19, 42, 2, 69, 88]);   // 10
+
+
+// N94
+// *****************************************
+// You are given an odd-length array of integers, in which all of them are 
+// the same, except for one single number.
+// Complete the method which accepts such an array, and returns 
+// that single different number.
+// The input array will always be valid! (odd-length >= 3)
+
+// Examples
+// [1, 1, 2] ==> 2
+// [17, 17, 3, 17, 17, 17, 17] ==> 3
+
+// SOLUTION
+// function stray(n) {
+//   let arr = n.sort();
+
+//   if (arr[0] !== arr[1]) {
+//     return arr[0];
+//   } else {
+//     return arr[arr.length - 1];
+//   }
+// }
+// stray([21, 21, 21, 9, 21, 21]);
+
+// Better Way
+// const stray = nums => nums.reduce((a, b) => a ^ b);
+// stray([21, 21, 21, 9, 21, 21]);
+
+
+// N95
+// *****************************************
+// All of the animals are having a feast! Each animal is bringing one dish. 
+// There is just one rule: the dish must start and end with the same letters 
+// as the animal's name. For example, the great blue heron is bringing 
+// garlic naan and the chickadee is bringing chocolate cake.
+
+// Write a function feast that takes the animal's name and dish as arguments 
+// and returns true or false to indicate whether the beast is allowed to 
+// bring the dish to the feast.
+// Assume that beast and dish are always lowercase strings, and that each has 
+// at least two letters. beast and dish may contain hyphens and spaces, but 
+// these will not appear at the beginning or end of the string. They will not 
+// contain numerals.
+
+// SOLUTION
+// function feast(beast, dish) {
+//   const b = dish.slice(0, 1);
+//   const bl = dish.slice(-1);
+//   const d = beast.slice(0, 1);
+//   const dl = beast.slice(-1);
+//   if (b === d && bl === dl) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
+// console.log(feast('brown bear', 'bear claw'));
+
+// THIS LINE OF CODE WORKS BUT CANNOT PASS TEST
+// function feast(beast, dish) {
+//   let starts = beast.startsWith(dish.slice(0, 1));
+//   let ends = beast.endsWith(dish.slice(-1));
+//   return starts === ends;
+// }
+// console.log(feast('brown bear', 'bear claw'));        // false
+// console.log(feast('chickadee', 'chocolate cake'));    // true
+
+// Better Way
+// function feast(beast, dish) {
+//   return beast[0] === dish[0] && beast.slice(-1) === dish.slice(-1);
+// }
+// console.log(feast('brown bear', 'bear claw'));    // false
+
+
+// N96
+// *****************************************
+// Task
+// Given a list and a number, create a new list that contains each number 
+// of list at most N times, without reordering.
+// For example if the input number is 2, and the input list is [1,2,3,1,2,1,2,3], 
+// you take [1,2,3,1,2], drop the next [1,2] since this would lead to 1 and 2 
+// being in the result 3 times, and then take 3, which leads to [1,2,3,1,2,3].
+// With list [20,37,20,21] and number 1, the result would be [20,37,21]
+
+// SOLUTION
+// function deleteNth(arr, n) {
+//   const res = [];
+//   for (let key of arr) {
+//     const exist = res.filter(item => item === key).length
+//     if (exist && exist === n) {
+//       continue;
+//     } else {
+//       res.push(key);
+//     }
+//   }
+//   return res;
+// }
+// console.log(deleteNth([1, 1, 3, 3, 7, 2, 2, 2, 2], 3));   //  [1, 1, 3, 3, 7, 2, 2, 2]
+
+
+// N97
+// *****************************************
+// Task:
+// Given a non-negative integer, 3 for example, return a string with a murmur: 
+// "1 sheep...2 sheep...3 sheep...". Input will always be valid, i.e. no negative integers
+
+// SOLUTION
+// const countSheep = function(num) {
+//   let str = '';
+//   for (let i = 1; i <= num; i++) {
+//     str += `${i} sheep...`
+//   }
+//   return str;
+// }
+// console.log(countSheep(21));
+
+
+// N98
+// *****************************************
+// This time we want to write calculations using functions and get the results. 
+// Let's have a look at some examples:
+
+// seven(times(five())); // must return 35
+// four(plus(nine())); // must return 13
+// eight(minus(three())); // must return 5
+// six(dividedBy(two())); // must return 3
+
+// SOLUTION
+// function zero(func)   { return func ? func(0) : 0; };
+// function one(func)    { return func ? func(1) : 1; };
+// function two(func)    { return func ? func(2) : 2; };
+// function three(func)  { return func ? func(3) : 3; };
+// function four(func)   { return func ? func(4) : 4; };
+// function five(func)   { return func ? func(5) : 5; };
+// function six(func)    { return func ? func(6) : 6; };
+// function seven(func)  { return func ? func(7) : 7; };
+// function eight(func)  { return func ? func(8) : 8; };
+// function nine(func)   { return func ? func(9) : 9; };
+
+// function plus( b )      { return function( a ) { return a + b; }; };
+// function minus( b )     { return function( a ) { return a - b; }; };
+// function times( b )     { return function( a ) { return a * b; }; };
+// function dividedBy( b ) { return function( a ) { return Math.floor(a / b); }; };
+
+
+// N99
+// *****************************************
+// Task:
+// Your task is to write a function which returns the sum of 
+// following series upto nth term(parameter).
+
+// Series: 1 + 1/4 + 1/7 + 1/10 + 1/13 + 1/16 +...
+// Rules:
+// You need to round the answer to 2 decimal places and return it as String.
+// If the given value is 0 then it should return 0.00
+// You will only be given Natural Numbers as arguments.
+
+// Examples:(Input --> Output)
+// 1 --> 1 --> "1.00"
+// 2 --> 1 + 1/4 --> "1.25"
+// 5 --> 1 + 1/4 + 1/7 + 1/10 + 1/13 --> "1.57"
+
+// SOLUTION
+// function seriesSum(n) {
+//   for (var s = 0, i = 0; i < n; i++) {
+//     s += 1 / (1 + i * 3)
+//   }
+//   return s.toFixed(2)
+// }
+// console.log(seriesSum(4));    // "1.49"
+
+
+// N100
+// *****************************************
+// Terminal game move function
+// In this game, the hero moves from left to right. The player rolls 
+// the dice and moves the number of spaces indicated by the dice two times.
+
+// Create a function for the terminal game that takes the current position 
+// of the hero and the roll (1-6) and return the new position.
+
+// Example:
+// move(3, 6) should equal 15
+
+// SOLUTION
+// const move = (position, roll) => roll * 2 + position;
+// console.log(move(2, 5));    // 12
+
+
+// N100
+// *****************************************
+// Your job is to write a function which increments a string, to create a new string.
+// If the string already ends with a number, the number should be incremented by 1.
+// If the string does not end with a number. the number 1 should be appended to the new string.
+
+// Examples:
+// foo -> foo1
+// foobar23 -> foobar24
+// foo0042 -> foo0043
+// foo9 -> foo10
+// foo099 -> foo100
+
+// SOLUTION
+// function incrementString(string) {
+//   const body = string.slice(0, -1);
+//   const lastDigit = string.slice(-1).match(/[0-9]/);
+//   return lastDigit === null
+//     ? string + '1'
+//     : lastDigit != 9
+//     ? body + (+lastDigit + 1)
+//     : incrementString(body) + "0";
+// }
+// console.log(incrementString('foobar000'));    // "foobar001"
+
+
+// N101
+// *****************************************
+// Jamie is a programmer, and James' girlfriend. She likes diamonds, and wants 
+// a diamond string from James. Since James doesn't know how to make this happen, 
+// he needs your help.
+// Task
+// You need to return a string that looks like a diamond shape when printed on 
+// the screen, using asterisk (*) characters. Trailing spaces should be removed, and 
+// every line must be terminated with a newline character (\n).
+// Return null/nil/None/... if the input is an even number or negative, as it is not 
+// possible to print a diamond of even or negative size.
+
+// Examples
+// A size 3 diamond:
+//  *
+// ***
+//  *
+// ...which would appear as a string of " *\n***\n *\n"
+
+// A size 5 diamond:
+//   *
+//  ***
+// *****
+//  ***
+//   *
+// ...that is:
+// "  *\n ***\n*****\n ***\n  *\n"
+
+// SOLUTION
+// function diamond(n){
+//   if (n <= 0 || n % 2 === 0) {
+//     return null;
+//   }
+
+//   const repeater = ch => n => ch.repeat(n)
+//   const spacer = repeater(' ')
+//   const asterixer = repeater('*')
+
+//   let diam = ''
+//   for (let row = 1; row <= n; row++) {
+//     const spaces = Math.abs(n - ((2*row) - 1))
+//     const stars = n - spaces
+//     diam += `${spacer(spaces / 2)}${asterixer(stars)}\n`
+//   }
+
+//   return diam
+// }
+// diamond(3);
+//   *
+//  ***
+// *****
+//  ***
+//   *
+
+
+// N102
+// *****************************************
+// Task
+// Given an array of integers, remove the smallest value. Do not mutate 
+// the original array/list. If there are multiple elements with the same 
+// value, remove the one with a lower index. If you get an empty array/list, 
+// return an empty array/list.
+// Don't change the order of the elements that are left.
+
+// Examples
+// * Input: [1,2,3,4,5], output= [2,3,4,5]
+// * Input: [5,3,2,1,4], output = [5,3,2,4]
+// * Input: [2,2,1,2,1], output = [2,2,2,1]
+
+// SOLUTION
+// function removeSmallest(numbers) {
+//   const smallest = Math.min(...numbers);
+//   const index = numbers.indexOf(smallest);
+  
+//   return numbers.filter((_, i) => i !== index);
+// }
+// console.log(removeSmallest([2, 2, 1, 2, 2, 1]));  // [2,2,2,1]
+
+// Better Way
+// const removeSmallest = numbers => numbers.filter((n,i) => i !== numbers.indexOf(Math.min(...numbers)));
+// console.log(removeSmallest([2, 2, 1, 2, 2, 1]));
+
+
+// N103
+// *****************************************
+// 
